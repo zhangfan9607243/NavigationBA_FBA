@@ -1,0 +1,57 @@
+site_name: 商业分析基础
+site_description: 商业分析基础
+site_url: https://zhangfan9607243.github.io/Navigation_FBA/
+site_dir: /Users/zhangfan/Library/Mobile Documents/com~apple~CloudDocs/Fan的文件/我的同步/GitHub/Navigation_FBA
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs        # 顶部导航标签
+    - navigation.sections    # 子导航分组
+    - navigation.top
+    - navigation.tracking
+    - content.code.copy
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: green   # 主色（导航栏背景）
+      accent: green    # 强调色（按钮、链接高亮）
+    - scheme: slate
+      primary: green
+      accent: green
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到日间模式
+
+nav:
+
+  - 首页: index.md
+
+  - 同步复习班: 
+    - Topic 1 - 商业分析基本概念:
+      - ✅ Topic 1.0 - 章节概览:          同步复习班/Topic01/Topic01_00/Topic01_00.md
+      - ✅ Topic 1.1 - 商业分析的定义:     同步复习班/Topic01/Topic01_01/Topic01_01.md
+      - ✅ Topic 1.2 - 商业分析的流程:     同步复习班/Topic01/Topic01_02/Topic01_02.md
+    - Topic 3 - R语言基础:
+      - ✅ Topic 3.1 - 测试章节:          同步复习班/Topic03/Topic03_01/test.md
+
+markdown_extensions:
+  - admonition
+  - md_in_html
+  - toc:
+      permalink: true
+      title: 本章目录
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+
+plugins:
+  - search
+  - mkdocs-jupyter
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
