@@ -169,19 +169,17 @@ Data collection and data management are also critical, as these choices shape th
 
 ### (2) Analytics doesn’t eliminate uncertainty or judgment
 
-Basic Principle:
+Basic Principle: All models are simplifications under assumptions:
 
-- All models are simplifications under assumptions:
+- This can help us focus on what matters
 
-    - This can help us focus on what matters
+- However, the world is more complex than any model can fully capture
 
-    - However, the world is more complex than any model can fully capture
+- All forecast can only offer probabilities:
 
-    - All forecast can only offer probabilities:
+    - Models can never offer certainties
 
-        - Models can never offer certainties
-
-        - A causal estimate can quantify impact, but only under specific assumptions.
+    - A causal estimate can quantify impact, but only under specific assumptions.
 
 This means that even with data:
 
