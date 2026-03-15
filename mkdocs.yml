@@ -1,0 +1,65 @@
+site_name: Foundations of Business Analytics
+site_description: Foundations of Business Analytics
+site_url: https://navigationba.github.io/NavigationBA_FBA
+site_dir: site
+edit_uri: edit/main/docs/
+repo_url: https://github.com/NavigationBA/NavigationBA_FBA
+repo_name: GitHub
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs        # 顶部导航标签
+    - navigation.sections    # 子导航分组
+    - navigation.top         # 顶部导航栏固定
+    - navigation.tracking    # 滚动时高亮当前章节
+    - content.code.copy      # 代码块复制按钮
+    - toc.follow             # 目录跟随滚动
+    - toc.sticky             # 目录固定在侧边栏
+  palette:
+    - scheme: default  # 日间模式
+      primary: green   # 主色（导航栏背景）
+      accent: green    # 强调色（按钮、链接高亮）
+    - scheme: slate    # 深色模式
+      primary: green   # 主色（导航栏背景）
+      accent: green    # 强调色（按钮、链接高亮）
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到日间模式
+        aria-label: 切换到日间模式
+
+markdown_extensions:
+  - admonition
+  - md_in_html
+  - toc:
+      permalink: true
+      title: Table of Contents
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      execute: false
+      include_source: true
+      include_requirejs: false
+      kernel_name: python311
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+
+  - Home: index.md
+
+  - Topics: 
+    - Topic 1 - Introduction to Business Analytics:           
+      - ✴️ Topic 1 - Topic 1 Overview:                                      Topics/Topic01/Topic01_00/Topic01_00.md
+      - ✅ Topic 1.1 - Concepts of Business Analytics:                    Topics/Topic01/Topic01_01/Topic01_01.md
+      - ✅ Topic 1.2 - Development of Business Analytics:                 Topics/Topic01/Topic01_02/Topic01_02.md
+      - ✅ Topic 1.3 - The Roles of Business Analysts:                    Topics/Topic01/Topic01_03/Topic01_03.md
+      - ✅ Topic 1.4 - Ethics  of Business Analytics:                     Topics/Topic01/Topic01_04/Topic01_04.md
