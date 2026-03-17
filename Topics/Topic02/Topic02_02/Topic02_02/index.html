@@ -1,0 +1,1597 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Foundations of Business Analytics">
+      
+      
+      
+        <link rel="canonical" href="https://NavigationBA.github.io/NavigationBA_FBA/Topics/Topic02/Topic02_02/Topic02_02/">
+      
+      
+        <link rel="prev" href="../../Topic02_01/Topic02_01/">
+      
+      
+        <link rel="next" href="../../Topic02_03/Topic02_03/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>✅ Topic 2.2 - R 语言基础 - Foundations of Business Analytics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#topic-22-r" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../.." title="Foundations of Business Analytics" class="md-header__button md-logo" aria-label="Foundations of Business Analytics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Foundations of Business Analytics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ✅ Topic 2.2 - R 语言基础
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="green"  aria-label="切换到日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/NavigationBA/NavigationBA_FBA" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../Topic01/Topic01_00/Topic01_00/" class="md-tabs__link">
+          
+  
+  
+  Topics
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Foundations of Business Analytics" class="md-nav__button md-logo" aria-label="Foundations of Business Analytics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Foundations of Business Analytics
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/NavigationBA/NavigationBA_FBA" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 1 - Introduction to Business Analytics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 1 - Introduction to Business Analytics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_00/Topic01_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 1 - Topic 1 Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_01/Topic01_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.1 - Concepts of Business Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_02/Topic01_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.2 - Development of Business Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_03/Topic01_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.3 - The Roles of Business Analysts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Topic01/Topic01_04/Topic01_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 1.4 - Ethics  of Business Analytics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topic 2 - R 语言基本介绍
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic 2 - R 语言基本介绍
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_00/Topic02_00/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✴️ Topic 2 - Topic 2 Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_01/Topic02_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.1 - R 语言简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.2 - R 语言基础
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.2 - R 语言基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of Contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of Contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topic-22-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topic 2.2 - R 语言基础
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. R 语言基本语法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. R 语言基本语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-r_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) R 中的赋值操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) R 中的向量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (3) R 中的注释
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (4) R 中的数据类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (5) R 的扩展包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-r-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (6) 在 R 中使用 help 来获取帮助
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-r_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. R 中的数据格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. R 中的数据格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-r_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) R 中的数据框
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tidyverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) tidyverse 中的数据框
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Topic02_03/Topic02_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ✅ Topic 2.3 - 运行 R 代码的方式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of Contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of Contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#topic-22-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Topic 2.2 - R 语言基础
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. R 语言基本语法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. R 语言基本语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-r_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) R 中的赋值操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) R 中的向量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (3) R 中的注释
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (4) R 中的数据类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (5) R 的扩展包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-r-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (6) 在 R 中使用 help 来获取帮助
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-r_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. R 中的数据格式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. R 中的数据格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-r_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (1) R 中的数据框
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tidyverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (2) tidyverse 中的数据框
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>✅ Topic 2.2 - R 语言基础</h1>
+
+<h2 id="topic-22-r">Topic 2.2 - R 语言基础<a class="headerlink" href="#topic-22-r" title="Permanent link">&para;</a></h2>
+<h2 id="1-r">1. R 语言基本语法<a class="headerlink" href="#1-r" title="Permanent link">&para;</a></h2>
+<p>我们先来看一些 R 语言的基础知识，帮助你快速上手 R 编程。</p>
+<h3 id="1-r_1">(1) R 中的赋值操作<a class="headerlink" href="#1-r_1" title="Permanent link">&para;</a></h3>
+<p>首先，在 R 中，代码可以在 RStudio 的 Console 面板中直接输入并运行，也可以在 Source 面板中的脚本文件（.R 文件）运行，这两种运行方式的区别是：</p>
+<ul>
+<li>在 Console 面板中输入的代码是即时执行的，适合快速测试和交互式编程</li>
+<li>在 Source 面板中的脚本文件中编写的代码需要先保存，然后才能运行，适合编写较长的代码和项目</li>
+<li>事实上，只要是代码，就必须在 Console 中运行，在文件中 编写的代码事实上是被发送到 Console 中运行的</li>
+</ul>
+<p>我们先来尝试写一个比较简单的计算表达式，比如：</p>
+<div class="highlight"><pre><span></span><code><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2</span>
+</code></pre></div>
+<p>4</p>
+<p>在 R 当中，我们还可以讲计算结果保留下来，这个就是变量赋值，R 中的赋值符号是 <code>&lt;-</code>：</p>
+<ul>
+<li>因此，<code>a &lt;- 2 + 2</code> 的意思是把 <code>2 + 2</code> 的计算结果赋值给变量 <code>a</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2</span>
+</code></pre></div>
+<ul>
+<li>当我们运行完这段代码之后，大家会发现并没有输出一个 <code>4</code>，这是因为这行代码的功能知识保存计算结果，要想看到计算结果，我们需要在下一行输入 <code>a</code> 来查看变量 <code>a</code> 的值：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">a</span>
+</code></pre></div>
+<p>4</p>
+<ul>
+<li>事实上，在 R 中，还有一个赋值符号就是 <code>=</code>，但是 R 官方的推荐是使用 <code>&lt;-</code> 来进行赋值，我们就按照官方的推荐来使用 <code>&lt;-</code> 来进行赋值</li>
+<li>运行完这段代码后，大家就会发现，右上角的环境面板中就多了一个变量 <code>a</code>，这个变量 <code>a</code> 的值就是 <code>4</code>，这说明我们成功地把计算结果保存在了变量 <code>a</code> 中，并且 <code>a</code> 这个变量也成功进入到了我们的工作环境中</li>
+</ul>
+<p>如果我们想修改变量 <code>a</code> 的值，我们可以直接对 <code>a</code> 进行重新赋值，比如：</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10</span>
+<span class="n">a</span>
+</code></pre></div>
+<p>10</p>
+<ul>
+<li>
+<p>这时我们会发现，右上角环境面板中的变量 <code>a</code> 的值就变成了 <code>10</code>，这说明我们成功地修改了变量 <code>a</code> 的值，并且这个修改也成功地反映在了我们的工作环境中</p>
+</li>
+<li>
+<p>在 R 中，变量修改是可以在原值的基础上进行的，比如我们可以通过 <code>a &lt;- a + 5</code> 来把变量 <code>a</code> 的值增加 <code>5</code>，这时变量 <code>a</code> 的值就会变成 <code>15</code>，这说明我们成功地在原值的基础上修改了变量 <code>a</code> 的值，并且这个修改也成功地反映在了我们的工作环境中</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">5</span>
+<span class="n">a</span>
+</code></pre></div>
+<p>15</p>
+<ul>
+<li>要注意，<code>a &lt;- a + 5</code> 这个表达式，每运行一次，变量 <code>a</code> 的值就会增加 <code>5</code>，所以如果我们连续运行两次 <code>a &lt;- a + 5</code>，变量 <code>a</code> 的值就会变成 <code>20</code>，所以大家一定要根据自己的需求来修改变量值，同一个代码避免重复运行多次，以免变量值被修改多次，导致结果不符合预期</li>
+</ul>
+<p>我们还可以在 <code>a</code> 的基础上创建其他变量：</p>
+<ul>
+<li>这时我们就创建了一个新的变量 <code>b</code>，这个变量 <code>b</code> 的值是 <code>a</code> 的值加上 <code>10</code>，代码是 <code>b &lt;- a + 10</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">10</span>
+<span class="n">b</span>
+</code></pre></div>
+<p>25</p>
+<ul>
+<li>运行完这段代码后，大家就会发现，右上角环境面板中又多了一个变量 <code>b</code>，这个变量 <code>b</code> 的值就是 <code>25</code>，这说明我们成功地在变量 <code>a</code> 的基础上创建了一个新的变量 <code>b</code>，并且这个变量 <code>b</code> 的值也成功地反映在了我们的工作环境中</li>
+</ul>
+<h3 id="2-r">(2) R 中的向量<a class="headerlink" href="#2-r" title="Permanent link">&para;</a></h3>
+<p>在 R 中，向量是多个数据放在一起的集合，我们可以通过 <code>c()</code> 函数来创建一个向量，比如：</p>
+<ul>
+<li>我们创建一个向量 <code>v</code>，这个向量 <code>v</code> 包含了 <code>1</code>、<code>2</code>、<code>3</code> 这三个元素，代码是 <code>v &lt;- c(1, 2, 3)</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">v</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</code></pre></div>
+<ul>
+<li>运行完这段代码后，大家就会发现，右上角环境面板中又多了一个变量 <code>v</code>，这个变量 <code>v</code> 的值就是一个包含了 <code>1</code>、<code>2</code>、<code>3</code> 这三个元素的向量</li>
+<li>要想在向量中访问某个元素，我们可以通过索引来访问，比如 <code>v[1]</code> 就是访问向量 <code>v</code> 的第一个元素，结果是 <code>1</code>，<code>v[2]</code> 就是访问向量 <code>v</code> 的第二个元素，结果是 <code>2</code>，以此类推</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">v</span><span class="p">[</span><span class="m">1</span><span class="p">]</span>
+</code></pre></div>
+<p>1</p>
+<p>在 R 中，向量还支持以下操作：</p>
+<ul>
+<li>获取长度：<code>length(v)</code> 可以获取向量 <code>v</code> 的长度，结果是 <code>3</code></li>
+<li>求和：<code>sum(v)</code> 可以求向量 <code>v</code> 的元素之和，结果是 <code>6</code></li>
+<li>平均值：<code>mean(v)</code> 可以求向量 <code>v</code> 的元素平均值，结果是 <code>2</code></li>
+<li>最大值：<code>max(v)</code> 可以求向量 <code>v</code> 的最大值，结果是 <code>3</code></li>
+<li>最小值：<code>min(v)</code> 可以求向量 <code>v</code> 的最小值，结果是 <code>1</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nf">length</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nf">sum</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nf">mean</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nf">max</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nf">min</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</code></pre></div>
+<p>3</p>
+<p>6</p>
+<p>2</p>
+<p>3</p>
+<p>1</p>
+<h3 id="3-r">(3) R 中的注释<a class="headerlink" href="#3-r" title="Permanent link">&para;</a></h3>
+<p>在 R 代码中，我们可以使用 <code>#</code> 来添加注释：</p>
+<ul>
+<li>注释是对代码的解释和说明，注释不会被 R 语言执行，它只是为了帮助我们更好地理解代码的功能和作用</li>
+<li>当 R 的解释其看到 <code>#</code> 符号时，它就会把 <code>#</code> 后面的内容当做注释来处理，而不会执行这些内容</li>
+<li>所以我们可以在代码中随时添加注释来解释代码的功能和作用，这样可以提高代码的可读性和可维护性</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 以下是一个加法运算的示例，我们将 `2`、`3` 和 `4` 这三个数字相加：</span>
+<span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">4</span><span class="w">  </span><span class="c1"># 这行代码会进行一个简单的加法运算</span>
+</code></pre></div>
+<p>9</p>
+<h3 id="4-r">(4) R 中的数据类型<a class="headerlink" href="#4-r" title="Permanent link">&para;</a></h3>
+<p>在 R 中，我们基本就只会接触到这三种数据类型，我们先做个简单了解，具体的数据类型我们会在后续的课程中进行详细介绍：</p>
+<ul>
+<li>数值型（numeric）：数值型数据是指包含数字的数据，比如 <code>1</code>、<code>2.5</code>、<code>-3</code> 等等，这些都是数值型数据</li>
+<li>字符型（character）：字符型数据是指包含文本的数据，比如 <code>"Hello"</code>、<code>"R Language"</code>、<code>"Data Science"</code> 等等，这些都是字符型数据</li>
+<li>日期型（Date）：日期型数据是指包含日期的数据，比如 <code>2024-01-01</code>、<code>2024-06-30</code> 等等，这些都是日期型数据</li>
+</ul>
+<h3 id="5-r">(5) R 的扩展包<a class="headerlink" href="#5-r" title="Permanent link">&para;</a></h3>
+<p>在 R 中，除了基础的功能之外，还有很多扩展包（package）可以使用，这些扩展包提供了更多的功能和工具，可以帮助我们更高效地进行数据分析和处理</p>
+<ul>
+<li>在 R 的默认工作环境中，这些包是没有被加载的，如果我们想使用这些包中的功能，就需要先加载这些包</li>
+<li>有些包是 R 自带的，我们可以直接加载，比如 <code>stats</code> 包、<code>graphics</code> 包等等，这些包提供了很多基础的统计分析和图形绘制功能</li>
+<li>
+<p>还有一些包是需要我们自己安装的，比如 <code>dplyr</code> 包、<code>ggplot2</code> 包等等，这些包提供了更多高级的数据处理和可视化功能，我们可以通过 <code>install.packages("包名")</code> 来安装这些包，安装完成之后，我们就可以通过 <code>library(包名)</code> 来加载这些包，这样我们就可以使用这些包中的功能了：</p>
+<ul>
+<li>注意，安装包只需要安装一次，安装好之后，以后再在别的文件或项目中，就不用再安装了，只需要加载就可以了</li>
+<li>而且，安装包的语法中，包名是需要加引号的，比如 <code>install.packages("tidyverse")</code>，但是加载包的语法中，包名是不需要加引号的，比如 <code>library(tidyverse)</code>，这是 R 语言的语法规则，我们需要遵守这个规则来正确地安装和加载包</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-r-help">(6) 在 R 中使用 help 来获取帮助<a class="headerlink" href="#6-r-help" title="Permanent link">&para;</a></h3>
+<p>在 R 中有着各种各样丰富的函数和功能，如果我们想要了解某个函数的用法，我们可以通过以下两个方法来获取帮助：</p>
+<ul>
+<li>第一种就是直接在 Console 中输入 <code>?函数名</code>，比如 <code>?mean</code>，就可以查看 <code>mean()</code> 函数的帮助文档，这个文档中会详细介绍这个函数的功能、参数、用法示例等等</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="o">?</span><span class="n">mean</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>mean                   package:base                    R Documentation
+
+_A_r_i_t_h_m_e_t_i_c _M_e_a_n
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Generic function for the (trimmed) arithmetic mean.
+
+_U_s_a_g_e:
+
+     mean(x, ...)
+
+     ## Default S3 method:
+     mean(x, trim = 0, na.rm = FALSE, ...)
+
+_A_r_g_u_m_e_n_t_s:
+
+       x: an R object.  Currently there are methods for numeric/logical
+          vectors and date, date-time and time interval objects.
+          Complex vectors are allowed for ‘trim = 0’, only.
+
+    trim: the fraction (0 to 0.5) of observations to be trimmed from
+          each end of ‘x’ before the mean is computed.  Values of trim
+          outside that range are taken as the nearest endpoint.
+
+   na.rm: a logical evaluating to ‘TRUE’ or ‘FALSE’ indicating whether
+          ‘NA’ values should be stripped before the computation
+          proceeds.
+
+     ...: further arguments passed to or from other methods.
+
+_V_a_l_u_e:
+
+     If ‘trim’ is zero (the default), the arithmetic mean of the values
+     in ‘x’ is computed, as a numeric or complex vector of length one.
+     If ‘x’ is not logical (coerced to numeric), numeric (including
+     integer) or complex, ‘NA_real_’ is returned, with a warning.
+
+     If ‘trim’ is non-zero, a symmetrically trimmed mean is computed
+     with a fraction of ‘trim’ observations deleted from each end
+     before the mean is computed.
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) _The New S
+     Language_.  Wadsworth &amp; Brooks/Cole.
+
+_S_e_e _A_l_s_o:
+
+     ‘weighted.mean’, ‘mean.POSIXct’, ‘colMeans’ for row and column
+     means.
+
+_E_x_a_m_p_l_e_s:
+
+     x &lt;- c(0:10, 50)
+     xm &lt;- mean(x)
+     c(xm, mean(x, trim = 0.10))
+</code></pre></div>
+<ul>
+<li>第二种是使用 <code>help("函数名")</code> 来获取帮助，比如 <code>help("mean")</code>，这个方法和第一种方法的效果是一样的，都会打开 <code>mean()</code> 函数的帮助文档，注意此时传入的函数或功能名是需要加引号的</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nf">help</span><span class="p">(</span><span class="s">&quot;mean&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>mean                   package:base                    R Documentation
+
+_A_r_i_t_h_m_e_t_i_c _M_e_a_n
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Generic function for the (trimmed) arithmetic mean.
+
+_U_s_a_g_e:
+
+     mean(x, ...)
+
+     ## Default S3 method:
+     mean(x, trim = 0, na.rm = FALSE, ...)
+
+_A_r_g_u_m_e_n_t_s:
+
+       x: an R object.  Currently there are methods for numeric/logical
+          vectors and date, date-time and time interval objects.
+          Complex vectors are allowed for ‘trim = 0’, only.
+
+    trim: the fraction (0 to 0.5) of observations to be trimmed from
+          each end of ‘x’ before the mean is computed.  Values of trim
+          outside that range are taken as the nearest endpoint.
+
+   na.rm: a logical evaluating to ‘TRUE’ or ‘FALSE’ indicating whether
+          ‘NA’ values should be stripped before the computation
+          proceeds.
+
+     ...: further arguments passed to or from other methods.
+
+_V_a_l_u_e:
+
+     If ‘trim’ is zero (the default), the arithmetic mean of the values
+     in ‘x’ is computed, as a numeric or complex vector of length one.
+     If ‘x’ is not logical (coerced to numeric), numeric (including
+     integer) or complex, ‘NA_real_’ is returned, with a warning.
+
+     If ‘trim’ is non-zero, a symmetrically trimmed mean is computed
+     with a fraction of ‘trim’ observations deleted from each end
+     before the mean is computed.
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988) _The New S
+     Language_.  Wadsworth &amp; Brooks/Cole.
+
+_S_e_e _A_l_s_o:
+
+     ‘weighted.mean’, ‘mean.POSIXct’, ‘colMeans’ for row and column
+     means.
+
+_E_x_a_m_p_l_e_s:
+
+     x &lt;- c(0:10, 50)
+     xm &lt;- mean(x)
+     c(xm, mean(x, trim = 0.10))
+</code></pre></div>
+<h2 id="2-r_1">2. R 中的数据格式<a class="headerlink" href="#2-r_1" title="Permanent link">&para;</a></h2>
+<h3 id="1-r_2">(1) R 中的数据框<a class="headerlink" href="#1-r_2" title="Permanent link">&para;</a></h3>
+<p>在 R 中，数据框（data frame）是一种非常重要的数据结构，它类似于 Excel 中的表格，可以存储不同类型的数据，并且可以通过行和列来访问数据</p>
+<p>首先，在 R 中创建数据框的方式是多种多样的，例如，我们可以通过 <code>data.frame()</code> 函数来创建一个数据框，比如：</p>
+<div class="highlight"><pre><span></span><code><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Charlie&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;David&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Eve&quot;</span><span class="p">)</span>
+<span class="n">age</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">21</span><span class="p">,</span><span class="w"> </span><span class="m">22</span><span class="p">,</span><span class="w"> </span><span class="m">23</span><span class="p">,</span><span class="w"> </span><span class="m">24</span><span class="p">)</span>
+<span class="n">gender</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Male&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Male&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Male&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Female&quot;</span><span class="p">)</span>
+
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">gender</span><span class="p">)</span>
+<span class="n">df</span>
+</code></pre></div>
+<table class="dataframe">
+<caption>A data.frame: 5 × 3</caption>
+<thead>
+    <tr><th scope=col>name</th><th scope=col>age</th><th scope=col>gender</th></tr>
+    <tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><td>Alice  </td><td>20</td><td>Female</td></tr>
+    <tr><td>Bob    </td><td>21</td><td>Male  </td></tr>
+    <tr><td>Charlie</td><td>22</td><td>Male  </td></tr>
+    <tr><td>David  </td><td>23</td><td>Male  </td></tr>
+    <tr><td>Eve    </td><td>24</td><td>Female</td></tr>
+</tbody>
+</table>
+
+<ul>
+<li>在这段代码中，我们创建了三个向量 <code>name</code>、<code>age</code> 和 <code>gender</code>，分别存储了姓名、年龄和性别的信息</li>
+<li>然后我们通过 <code>data.frame(name, age, gender)</code> 来创建了一个数据框 <code>df</code>，这个数据框包含了这三列数据，并且可以在环境界面中看到这个数据框 <code>df</code> 的结构和内容</li>
+<li>最后我们通过 <code>df</code> 来查看这个数据框的内容</li>
+<li>
+<p>在最终的展示结果中，我们可以看到每列的列名和数据类型：</p>
+<ul>
+<li><code>name</code> 列是字符型数据（<code>&lt;chr&gt;</code> 表示 character，就是字符类型），包含了姓名信息</li>
+<li><code>age</code> 列是数值型数据（<code>&lt;dbl&gt;</code> 表示 double，就是双精度数值类型，大家简单理解为数值就行了），包含了年龄信息</li>
+<li><code>gender</code> 列是字符型数据（<code>&lt;chr&gt;</code> 表示 character，就是字符类型），包含了性别信息</li>
+</ul>
+</li>
+</ul>
+<p>在 R 中，如果想提取数据框中的某一列，我们可以通过 <code>$</code> 符号来提取：</p>
+<ul>
+<li>比如 <code>df$age</code> 就是提取数据框 <code>df</code> 中的 <code>age</code> 列，结果是一个包含了年龄信息的向量，注意，数据框中的一列提取出来是一个向量</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">$</span><span class="n">age</span>
+</code></pre></div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li></ol>
+
+<ul>
+<li>之后，我们可以对这个向量做各种操作，比如求平均值、求和等等，这些都是我们在之前讲过的向量操作，数据框中的列提取出来就是一个向量，我们就可以对这个向量进行各种操作了</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nf">mean</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">age</span><span class="p">)</span>
+</code></pre></div>
+<p>22</p>
+<h3 id="2-tidyverse">(2) tidyverse 中的数据框<a class="headerlink" href="#2-tidyverse" title="Permanent link">&para;</a></h3>
+<p>在 R 中，除了基础的 <code>data.frame</code> 数据框之外，还有一种更为现代化的数据框叫做 tibble，这种数据框是 tidyverse 包中的一种数据结构，它提供了更好的打印和显示效果，并且支持更多的功能和操作。</p>
+<p>首先，我们需要安装和加载 tidyverse，这个包是我们常用的一个数据科学包，里面包含了很多常用的数据处理和可视化工具：</p>
+<ul>
+<li>我们可以通过 <code>install.packages("tidyverse")</code> 来安装 tidyverse 包</li>
+<li>安装完成之后，我们就可以通过 <code>library(tidyverse)</code> 来加载 tidyverse 包，这样我们就可以使用 tidyverse 包中的功能了</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;tidyverse&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>also installing the dependencies ‘sys’, ‘bit’, ‘farver’, ‘labeling’, ‘RColorBrewer’, ‘viridisLite’, ‘rematch’, ‘askpass’, ‘bit64’, ‘prettyunits’, ‘blob’, ‘DBI’, ‘data.table’, ‘gtable’, ‘isoband’, ‘S7’, ‘scales’, ‘gargle’, ‘cellranger’, ‘curl’, ‘ids’, ‘rematch2’, ‘openssl’, ‘timechange’, ‘systemfonts’, ‘textshaping’, ‘clipr’, ‘vroom’, ‘tzdb’, ‘progress’, ‘selectr’, ‘broom’, ‘conflicted’, ‘dbplyr’, ‘dtplyr’, ‘forcats’, ‘ggplot2’, ‘googledrive’, ‘googlesheets4’, ‘haven’, ‘hms’, ‘httr’, ‘lubridate’, ‘modelr’, ‘ragg’, ‘readr’, ‘readxl’, ‘reprex’, ‘rstudioapi’, ‘rvest’, ‘tidyr’
+
+
+
+
+
+The downloaded binary packages are in
+    /var/folders/g_/73gmtm2x2fzgpl48dq2nvt180000gn/T//RtmpSy1l5j/downloaded_packages
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>── [1mAttaching core tidyverse packages[22m ──────────────────────── tidyverse 2.0.0 ──
+[32m✔[39m [34mforcats  [39m 1.0.1     [32m✔[39m [34mreadr    [39m 2.2.0
+[32m✔[39m [34mggplot2  [39m 4.0.2     [32m✔[39m [34mstringr  [39m 1.6.0
+[32m✔[39m [34mlubridate[39m 1.9.5     [32m✔[39m [34mtibble   [39m 3.3.1
+[32m✔[39m [34mpurrr    [39m 1.2.1     [32m✔[39m [34mtidyr    [39m 1.3.2
+── [1mConflicts[22m ────────────────────────────────────────── tidyverse_conflicts() ──
+[31m✖[39m [34mdplyr[39m::[32mfilter()[39m masks [34mstats[39m::filter()
+[31m✖[39m [34mdplyr[39m::[32mlag()[39m    masks [34mstats[39m::lag()
+[31m✖[39m [34mMASS[39m::[32mselect()[39m  masks [34mdplyr[39m::select()
+[36mℹ[39m Use the conflicted package ([3m[34m&lt;http://conflicted.r-lib.org/&gt;[39m[23m) to force all conflicts to become errors
+</code></pre></div>
+<p>比方说，同样是创建数据框，我们可以通过 <code>tibble()</code> 函数来创建一个 tibble 数据框，比如：</p>
+<div class="highlight"><pre><span></span><code><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Charlie&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;David&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Eve&quot;</span><span class="p">)</span>
+<span class="n">age</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">21</span><span class="p">,</span><span class="w"> </span><span class="m">22</span><span class="p">,</span><span class="w"> </span><span class="m">23</span><span class="p">,</span><span class="w"> </span><span class="m">24</span><span class="p">)</span>
+<span class="n">gender</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;Female&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Male&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Male&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Male&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Female&quot;</span><span class="p">)</span>
+
+<span class="n">df_td</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">tibble</span><span class="p">(</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">,</span>
+<span class="w">    </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gender</span>
+<span class="p">)</span>
+
+<span class="n">df_td</span>
+</code></pre></div>
+<table class="dataframe">
+<caption>A tibble: 5 × 3</caption>
+<thead>
+    <tr><th scope=col>name</th><th scope=col>age</th><th scope=col>gender</th></tr>
+    <tr><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+    <tr><td>Alice  </td><td>20</td><td>Female</td></tr>
+    <tr><td>Bob    </td><td>21</td><td>Male  </td></tr>
+    <tr><td>Charlie</td><td>22</td><td>Male  </td></tr>
+    <tr><td>David  </td><td>23</td><td>Male  </td></tr>
+    <tr><td>Eve    </td><td>24</td><td>Female</td></tr>
+</tbody>
+</table>
+
+<ul>
+<li>之后，我们还是使用 <code>$</code> 符号来提取 tibble 数据框中的列，比如 <code>df_td$age</code> 就是提取 tibble 数据框 <code>df_td</code> 中的 <code>age</code> 列，结果也是一个包含了年龄信息的向量，注意，tibble 数据框中的一列提取出来也是一个向量</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">df_td</span><span class="o">$</span><span class="n">age</span>
+</code></pre></div>
+<style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li></ol>
+
+<p>我们目前来看，R 中自带的 <code>data.frame</code> 数据框和 tidyverse 包中的 <code>tibble</code> 数据框好像差不多：</p>
+<ul>
+<li>但是，tibble 数据框其实是更符合现代数据分析需求的数据框的，我们本门课之后基本上都是用 tibble 数据框来进行数据分析的</li>
+<li>大家在别的课程中接触到的数据框可能大多是 <code>data.frame</code> 数据框，因为不做数据表处理的话，其实 <code>data.frame</code> 数据框也是完全够用的</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "content.code.copy", "toc.follow", "toc.sticky"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
